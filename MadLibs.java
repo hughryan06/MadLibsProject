@@ -3,50 +3,73 @@ import java.util.Scanner;
 public class MadLibs {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        String blankMadLibs = "I went to the <adjective> farm, to <verb> with each of the <noun>.";
-        // Now I'm going to prompt the user for each word type I need to fill in the
-        // blanks
-        // creating a scanner to proccess the user inputs
-        Scanner scan = new Scanner(System.in);
+        String madLibTemplate = "Once upon a <adjective> night, a <animal> decided to <verb> with a <noun> under the <adjective> <place>.";
 
-        // prompts the User
-        System.out.println("Type an adjective: ");
-        // gets the user input Adjective
-        String userAdjective = scan.nextLine();
+        // find and replace the first set of <>
+        int openBracketIndex = madLibTemplate.indexOf("<");
+        int closeBracketIndex = madLibTemplate.indexOf(">");
+        String partOfSpeech = madLibTemplate.substring(openBracketIndex + 1, closeBracketIndex);
 
-        // prompts the User
-        System.out.println("Type an Verb: ");
-        // gets the user input Verbwhi
-        String userVerb = scan.nextLine();
+        System.out.print("please enter a " + partOfSpeech + ": ");
+        String userInput = scanner.nextLine();
 
-        // prompts the User
-        System.out.println("Type an Noun: ");
-        // gets the user input Noun
-        String userNoun = scan.nextLine();
+        String firstPart = madLibTemplate.substring(0, openBracketIndex);
+        String lastPart = madLibTemplate.substring(closeBracketIndex + 1);
+        madLibTemplate = firstPart + userInput + lastPart;
 
-        // Replace <adjective> by finding the starting and ending index of <adjective>
-        int adjIndexStart = blankMadLibs.indexOf("<adjective>");
-        int adjIndexEnd = adjIndexStart + "<adjective>".length();
-        String firstPart = blankMadLibs.substring(0, adjIndexStart);
-        String secondPart = blankMadLibs.substring(adjIndexEnd);
-        String updatedMadLibs = firstPart + userAdjective + secondPart;
+        // find and replace the next <>
+        openBracketIndex = madLibTemplate.indexOf("<");
+        closeBracketIndex = madLibTemplate.indexOf(">");
+        partOfSpeech = madLibTemplate.substring(openBracketIndex + 1, closeBracketIndex);
 
-        // Replace <verb> by finding the starting and ending index of <adjective>
-        int verbIndexStart = updatedMadLibs.indexOf("<verb>");
-        int verbIndexEnd = verbIndexStart + "<verb>".length();
-        firstPart = updatedMadLibs.substring(0, verbIndexStart);
-        secondPart = updatedMadLibs.substring(verbIndexEnd);
-        updatedMadLibs = firstPart + userVerb + secondPart;
+        System.out.print("please enter an " + partOfSpeech + ": ");
+        userInput = scanner.nextLine();
 
-        // Replace <adjective> by finding the starting and ending index of <adjective>
-        int nounIndexStart = updatedMadLibs.indexOf("<noun>");
-        int nounIndexEnd = nounIndexStart + "<noun>".length();
-        firstPart = updatedMadLibs.substring(0, nounIndexStart);
-        secondPart = updatedMadLibs.substring(nounIndexEnd);
-        updatedMadLibs = firstPart + userNoun + secondPart;
+        firstPart = madLibTemplate.substring(0, openBracketIndex);
+        lastPart = madLibTemplate.substring(closeBracketIndex + 1);
+        madLibTemplate = firstPart + userInput + lastPart;
 
-        // Final Print Statment
-        System.out.println("Here is you costom story: " + updatedMadLibs);
+        // next <>
+        openBracketIndex = madLibTemplate.indexOf("<");
+        closeBracketIndex = madLibTemplate.indexOf(">");
+        partOfSpeech = madLibTemplate.substring(openBracketIndex + 1, closeBracketIndex);
+
+        System.out.print("please enter a " + partOfSpeech + ": ");
+        userInput = scanner.nextLine();
+
+        firstPart = madLibTemplate.substring(0, openBracketIndex);
+        lastPart = madLibTemplate.substring(closeBracketIndex + 1);
+        madLibTemplate = firstPart + userInput + lastPart;
+
+        // another <>
+        openBracketIndex = madLibTemplate.indexOf("<");
+        closeBracketIndex = madLibTemplate.indexOf(">");
+        partOfSpeech = madLibTemplate.substring(openBracketIndex + 1, closeBracketIndex);
+
+        System.out.print("please enter a " + partOfSpeech + ": ");
+        userInput = scanner.nextLine();
+
+        firstPart = madLibTemplate.substring(0, openBracketIndex);
+        lastPart = madLibTemplate.substring(closeBracketIndex + 1);
+        madLibTemplate = firstPart + userInput + lastPart;
+
+        // last <>
+        openBracketIndex = madLibTemplate.indexOf("<");
+        closeBracketIndex = madLibTemplate.indexOf(">");
+        partOfSpeech = madLibTemplate.substring(openBracketIndex + 1, closeBracketIndex);
+
+        System.out.print("please enter a " + partOfSpeech + ": ");
+        userInput = scanner.nextLine();
+
+        firstPart = madLibTemplate.substring(0, openBracketIndex);
+        lastPart = madLibTemplate.substring(closeBracketIndex + 1);
+        madLibTemplate = firstPart + userInput + lastPart;
+
+        // print final story
+        System.out.println("Here is your custom story: " + madLibTemplate);
+
+        scanner.close();
     }
 }
